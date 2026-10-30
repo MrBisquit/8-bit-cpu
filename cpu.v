@@ -40,5 +40,11 @@ module cpu (
         .program_counter(program_counter),  // program_counter  -> program_counter
         .instr(instr)                       // instr            -> instr
     );
+
+    // Address Register (extracts the address from the instruction)
+    Address_Register ar (
+        .instr(instr),                      // instr            -> instr
+        .addr(addr)                         // addr             -> addr
+    )
     
 endmodule

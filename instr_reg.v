@@ -18,7 +18,7 @@ module Instruction_Register (
         // Only run if the signal is given to load, and the data is an instruction
         if (load && is_instr) begin
             // Load the instruction into the specified address
-            instructions[load_addr] <= cpu_input;
+            instrs[load_addr] <= cpu_input;
         end
     end
 
@@ -26,7 +26,7 @@ module Instruction_Register (
     always @(*) begin
         // Fetch the instruction from the instruction memory
         // (FETCH) DECODE EXECUTE
-        instruction = instructions[program_counter];
+        instr = instrs[program_counter];
     end
     
 endmodule

@@ -34,7 +34,7 @@ module cpu (
     Instruction_Register ir (
         .clk(clk),                          // clk              -> clk
         .load(load),                        // load             -> load
-        .is_istr(is_instr),                 // is_instr         -> is_instr
+        .is_instr(is_instr),                // is_instr         -> is_instr
         .load_addr(load_addr),              // load_addr        -> load_addr
         .cpu_input(cpu_input),              // cpu_input        -> cpu_input
         .program_counter(program_counter),  // program_counter  -> program_counter

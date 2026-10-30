@@ -76,5 +76,18 @@ module cpu (
         .alu_result(result),                // alu_result       -> result
         .acc_value(acc_value)               // acc_value        -> acc_value
     );
+
+    // ALU (performs the arithmetic or logic operations based on the control signals)
+    ALU alu (
+        .a(acc_value),                      // a                -> acc_value
+        .b(data),                           // b                -> data
+        .sub(sub),                          // sub              -> sub
+        .op_select(op_select),              // op_select        -> op_select
+        .result(result),                    // result           -> result
+        .cout(),                            // cout             -> (empty, unused)
+        .overflow(),                        // overflow         -> (empty, unused)
+        .negative(),                        // negative         -> (empty, unused)
+        .zero()                             // zero             -> (empty, unused)
+    );
     
 endmodule

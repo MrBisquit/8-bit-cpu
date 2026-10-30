@@ -12,7 +12,7 @@ module cpu (
     // DR = Data Register
     // OR = Output Register
     wire [4:0] program_counter;     // PC value                                         5 bits
-    wire [7:0] instr;               // Current instruction                              8 bits
+    wire [15:0] instr;               // Current instruction                             16 bits
     wire [7:0] data;                // Operand from the DR                              8 bits
     wire [7:0] acc_value;           // Accumulator value                                8 bits
     wire       sub;                 // Subtraction symbol ???
@@ -54,8 +54,27 @@ module cpu (
         .is_instr(is_instr),                // is_instr         -> is_instr
         .load_addr(load_addr),              // load_addr        -> load_addr
         .cpu_input(cpu_input),              // cpu_input        -> cpu_input
-        .addr(addr)                         // addr             -> addr
+        .addr(addr),                        // addr             -> addr
         .data(data)                         // data             -> data
+    );
+
+    // Control Unit (decodes the instruction and generates the control signals for the ALU and OR)
+    Control_Unit cu (
+        .clk(clk),                          // clk              -> clk
+        .instr(instr),                      // instr            -> instr
+        .sub(sub),                          // sub              -> sub
+        .op_select(op_select),              // op_select        -> op_select
+        .write_enable(write_enable),        // write_enable     -> write_enable
+        .read_enable(read_enable),          // read_enable      -> read_enable
+        .output_index(output_index)         // output_index     -> output_index
+    );
+
+    // Accumulator (stores the result of the ALU and provides one of the Operands for the next operation)
+    Accumulator acc (
+        .clk(clk),                          // clk              -> clk
+        .reset(reset),                      // reset            -> reset
+        .alu_result(result),                // alu_result       -> result
+        .acc_value(acc_value)               // acc_value        -> acc_value
     );
     
 endmodule

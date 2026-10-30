@@ -5,7 +5,7 @@ module Address_Register (
 
     // Always run
     always @(*) begin
-        addr = instruction[11:8]; // Address for the Operand
+        addr = instr[11:8]; // Address for the Operand
     end
     
 endmodule

@@ -45,6 +45,17 @@ module cpu (
     Address_Register ar (
         .instr(instr),                      // instr            -> instr
         .addr(addr)                         // addr             -> addr
-    )
+    );
+
+    // Data Register (fetches data from the address provided by the instruction)
+    Data_Register dr (
+        .clk(clk),                          // clk              -> clk
+        .load(load),                        // load             -> load
+        .is_instr(is_instr),                // is_instr         -> is_instr
+        .load_addr(load_addr),              // load_addr        -> load_addr
+        .cpu_input(cpu_input),              // cpu_input        -> cpu_input
+        .addr(addr)                         // addr             -> addr
+        .data(data)                         // data             -> data
+    );
     
 endmodule

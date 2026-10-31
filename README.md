@@ -18,3 +18,6 @@ A single core, fairly basic 8-bit CPU.
 A lot of this was rewritten from https://github.com/Lemme-lab/Verilog-Simple-CPU/,
 but heavily commented, so I can learn Verilog while also building a fairly simple
 8-bit CPU.
+
+## Screenshots
+<img width="1578" height="960" alt="image" src="https://github.com/user-attachments/assets/4b5be3a3-101a-48cc-b5f4-a4dd95339d48" />

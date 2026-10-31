@@ -1,3 +1,6 @@
+/* verilator lint_off IMPLICIT */
+/* verilator lint_off WIDTHEXPAND */
+
 module ALU (
     input [7:0] a,                  // Operand from the ACC                             8 bits
     input [7:0] b,                  // Operand from the DR                              8 bits
@@ -6,7 +9,7 @@ module ALU (
 
     input [2:0] op_select,          // Operation selection                              3 bits
 
-    input [7:0] result,             // Unified result output                            8 bits
+    output [7:0] result,            // Unified result output                            8 bits
 
     output cout,                    // Carry out for ADD/SUB
     output overflow,                // Overflow flag
@@ -36,14 +39,14 @@ module ALU (
     );
 
     // AND operation
-    And and (
+    And andOp (
         .a(a),                              // a                -> a
         .b(b),                              // b                -> b
         .y(and_res_internal)                // y                -> and_res_internal
     );
 
     // OR operation
-    Or or (
+    Or orOp (
         .a(a),                              // a                -> a
         .b(b),                              // b                -> b
         .y(or_res_internal)                 // y                -> or_res_internal
@@ -74,7 +77,7 @@ module ALU (
         .in5(div_res),                      // in5              -> div_res
         .sel(op_select),                    // sel              -> op_select
         .out(result)                        // out              -> result
-    )
+    );
 
     // Overflow detection (only for addition and subtraction)
     assign overflow = (op_select == 3'b000 || op_select == 3'b001) && overflow_arithmetic;

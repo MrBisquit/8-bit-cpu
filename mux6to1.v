@@ -8,10 +8,10 @@ module Mux6to1 (
     
     input [2:0] sel,                // Select input                                     3 bits
     
-    output [7:0] out,               // Output                                           8 bits
+    output [7:0] out                // Output                                           8 bits
 );
 
-    assign out = (sel = 3'b000) ? in0 :
+    assign out = (sel == 3'b000) ? in0 :
         (sel == 3'b001) ? in1 :
         (sel == 3'b010) ? in2 :
         (sel == 3'b011) ? in3 :

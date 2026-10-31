@@ -1,3 +1,7 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off IMPLICIT */
+/* verilator lint_off WIDTHEXPAND */
+
 module cpu (
     input clk,                      // Clock
     input reset,                    // Reset
@@ -12,7 +16,7 @@ module cpu (
     // DR = Data Register
     // OR = Output Register
     wire [4:0] program_counter;     // PC value                                         5 bits
-    wire [15:0] instr;               // Current instruction                             16 bits
+    wire [7:0] instr;               // Current instruction                              8 bits
     wire [7:0] data;                // Operand from the DR                              8 bits
     wire [7:0] acc_value;           // Accumulator value                                8 bits
     wire       sub;                 // Subtraction symbol ???
@@ -91,7 +95,7 @@ module cpu (
     );
 
     // OR
-    Output_Register or (
+    Output_Register orReg (
         .clk(clk),                          // clk              -> clk
         .acc_value(acc_value),              // acc_value        -> acc_value
         .output_index(output_index),        // output_index     -> output_index
@@ -99,5 +103,14 @@ module cpu (
         .read_enable(read_enable),          // read_enable      -> read_enable
         .output_value(output_value)         // output_value     -> output_value
     );
+
+    initial begin
+        //if ($test$plusargs("trace") != 0) begin
+        $display("[%0t] Tracing to logs/vlt_dump.vcd...\n", $time);
+        $dumpfile("logs/vlt_dump.vcd");
+        $dumpvars();
+        //end
+        $display("[%0t] Model running...\n", $time);
+    end
     
 endmodule

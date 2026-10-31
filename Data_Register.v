@@ -27,5 +27,9 @@ module Data_Register (
         // Fetch the data from the data memory
         data = memory[addr];
     end
+
+    initial begin
+        $readmemh("program.hex", memory);
+    end
     
 endmodule

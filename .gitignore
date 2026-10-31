@@ -1,0 +1,12 @@
+*.dmp
+*.log
+*.csrc
+*.vcd
+obj_*
+logs
+build*
+CmakeFiles
+Makefile
+cmake_install.cmake
+CmakeCache.txt
+cpu

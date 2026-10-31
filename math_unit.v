@@ -4,7 +4,7 @@ module Math_Unit (
 
     input sub,                      // Subtraction symbol
 
-    input [7:0] sum,                 // Sum output                                      8 bits
+    output [7:0] sum,               // Sum output                                      8 bits
 
     output cout,                    // Carry out for ADD/SUB
     output overflow,                // Overflow flag

@@ -1,6 +1,7 @@
 module Program_Counter (
     input clk,                      // Clock
     input reset,                    // Reset
+    input halted,                   // Program halted
 
     output reg [4:0] pc             // Program Counter                                  5 bits
 );
@@ -9,7 +10,7 @@ module Program_Counter (
     always @(posedge clk or posedge reset) begin
         if(reset)
             pc <= 5'b00000; // Reset to the first instruction
-        else
+        else if(!halted)
             pc <= pc + 1;   // Increment
     end
     

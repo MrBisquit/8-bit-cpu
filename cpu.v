@@ -26,12 +26,14 @@ module cpu (
     wire       write_enable;        // Enable writing to the OR
     wire       read_enable;         // Enable reading from the OR
     wire [7:0] result;              // Result from the ALU                              8 bits
+    wire       halted;              // Program halted
 
     // PC
     Program_Counter pc (
         .clk(clk),                          // clk              -> clk
         .reset(reset),                      // reset            -> reset
-        .pc(program_counter)                // pc               -> program_counter
+        .pc(program_counter),               // pc               -> program_counter
+        .halted(halted)                     // halted           -> halted
     );
 
     // IR (FETCH)
@@ -70,7 +72,8 @@ module cpu (
         .op_select(op_select),              // op_select        -> op_select
         .write_enable(write_enable),        // write_enable     -> write_enable
         .read_enable(read_enable),          // read_enable      -> read_enable
-        .output_index(output_index)         // output_index     -> output_index
+        .output_index(output_index),        // output_index     -> output_index
+        .halted(halted)                     // halted           -> halted
     );
 
     // ACC (stores the result of the ALU and provides one of the Operands for the next operation)

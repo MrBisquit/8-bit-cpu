@@ -68,13 +68,14 @@ module ALU (
     );
 
     // Select between different operation results (6-to-1 MUX)
-    Mux6to1 mux (
+    Mux mux (
         .in0(sum),                          // in0              -> sum
         .in1(sum),                          // in1              -> sum
         .in2(and_res_internal),             // in2              -> and_res_internal
         .in3(or_res_internal),              // in3              -> or_res_internal
         .in4(mult_res),                     // in4              -> mult_res
         .in5(div_res),                      // in5              -> div_res
+        .in6(b),                            // in6              -> b
         .sel(op_select),                    // sel              -> op_select
         .out(result)                        // out              -> result
     );

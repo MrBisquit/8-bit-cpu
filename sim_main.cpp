@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 
     cpu->cpu_input = 0x00;
     cpu->load_addr = 0;
-    cpu->load = 0;
+    cpu->load = 1;
     cpu->is_instr = 0;
 
     cpu->eval();
